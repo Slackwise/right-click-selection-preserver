@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Right-Click Selection Preserver",
+  "shortname": "RCSP",
+  "description": "When selecting with the mouse, preserves selection if you right-click without having to left go of left-click.",
+  "version": "1",
+  "author": "@Slackwise",
+  "icons": {"48": "cursor-text-area-48.png",
+            "125": "cursor-text-area-125.png"},
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["index.js"]
+    }
+  ]
+}
