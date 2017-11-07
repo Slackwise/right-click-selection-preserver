@@ -9,7 +9,7 @@
   const MOUSEDOWN_EVENT_ID       = 1;
   const SELECTIONCHANGE_EVENT_ID = 2;
   const MOUSEUP_EVENT_ID         = 3;
-  const CLICK_EVENT_ID           = 4;
+  const EVENT_OPTS = {passive: true};
   var lastSelectionRange = new Range();
   const loggedEventIds = {
     // Using this object as a static "struct" singleton,
@@ -50,12 +50,11 @@
   }
 
   try {
-    document.addEventListener('mousedown',        e => loggedEventIds.log(MOUSEDOWN_EVENT_ID));
-    document.addEventListener('selectionchange',  saveSelection);
-    document.addEventListener('mouseup',          e => loggedEventIds.log(MOUSEUP_EVENT_ID));
-    document.addEventListener('click',            e => loggedEventIds.log(CLICK_EVENT_ID));
-    document.addEventListener('contextmenu',      handleContextMenu);
+    document.addEventListener('mousedown',        e => loggedEventIds.log(MOUSEDOWN_EVENT_ID), EVENT_OPTS);
+    document.addEventListener('mouseup',          e => loggedEventIds.log(MOUSEUP_EVENT_ID),   EVENT_OPTS);
+    document.addEventListener('selectionchange',  saveSelection,     EVENT_OPTS);
+    document.addEventListener('contextmenu',      handleContextMenu, EVENT_OPTS);
   } catch (e) {
-    console.log("Failed to load Right Click Selection Preserver: " + e);
+    console.log("Failed to load Right-Click Selection Preserver: " + e);
   }
 })();
